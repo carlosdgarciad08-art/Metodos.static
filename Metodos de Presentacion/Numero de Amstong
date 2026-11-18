@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+public class T1_C4_Armstrong {
+
+    static int contarDigitos(int n) {
+        if (n == 0) {
+            return 1;
+        }
+
+        int c = 0;
+
+        while (n > 0) {
+            c++;
+            n /= 10;
+        }
+
+        return c;
+    }
+
+    static int potencia(int b, int e) {
+        int r = 1;
+
+        for (int i = 0; i < e; i++) {
+            r *= b;
+        }
+
+        return r;
+    }
+
+    static boolean esArmstrong(int n) {
+        if (n < 0) {
+            return false;
+        }
+
+        int original = n;
+        int digitos = contarDigitos(n);
+        int suma = 0;
+
+        while (n > 0) {
+            int digito = n % 10;
+            suma += potencia(digito, digitos);
+            n /= 10;
+        }
+
+        return suma == original;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Ingrese un numero: ");
+        int n = sc.nextInt();
+
+        if (esArmstrong(n)) {
+            System.out.println("Es Armstrong.");
+        } else {
+            System.out.println("No es Armstrong.");
+        }
+
+        sc.close();
+    }
+}
