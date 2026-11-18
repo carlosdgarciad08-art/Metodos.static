@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class T1_C1_Agua {
+
+    static double leerConsumo(Scanner sc) {
+        double m3;
+
+        do {
+            System.out.print("Ingrese consumo en m3: ");
+            m3 = sc.nextDouble();
+
+            if (m3 < 0) {
+                System.out.println("No puede ser negativo.");
+            }
+
+        } while (m3 < 0);
+
+        return m3;
+    }
+
+    static double calcularValor(double m3) {
+        double valor;
+
+        if (m3 <= 15) {
+            valor = m3 * 0.40;
+        } else {
+            valor = 15 * 0.40 + (m3 - 15) * 0.75;
+        }
+
+        return valor + 2.50;
+    }
+
+    static void mostrarPlanilla(double m3, double valor) {
+        System.out.println("--- PLANILLA DE AGUA ---");
+        System.out.println("Consumo: " + m3 + " m3");
+        System.out.printf("Total: $%.2f%n", valor);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        double consumo = leerConsumo(sc);
+        double valor = calcularValor(consumo);
+
+        mostrarPlanilla(consumo, valor);
+
+        sc.close();
+    }
+}
